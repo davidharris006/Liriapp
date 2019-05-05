@@ -1,7 +1,7 @@
 require("dotenv").config();
 var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
-var axios = require('axios')
+var fs = require('fs')
 var Finder = require("./finder")
 var input = process.argv[2];
 var value = process.argv.slice(3).join(" ")
@@ -12,12 +12,24 @@ function searchType () {
         finder.band(value)
     }
     else if(input === "spotify-this-song"){
+        
         finder.song(value)
     }
     else if(input === "movie-this"){
         finder.movie(value)
     }
-  
+  else if(input === "do-what-it-says") {
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) { 
+            return console.log("There was an error " + error);
+        }
+        var inputArr = data.split(",")
+        input = inputArr[0]
+        value = inputArr[1]
+        
+        searchType();
+    })
+  }
 
 }
 
