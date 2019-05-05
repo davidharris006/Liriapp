@@ -1,6 +1,6 @@
 require("dotenv").config();
-var Spotify = require('node-spotify-api');
-var keys = require("./keys.js");
+
+
 var fs = require('fs')
 var Finder = require("./finder")
 var input = process.argv[2];

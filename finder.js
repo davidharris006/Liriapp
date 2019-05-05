@@ -40,7 +40,10 @@ var Finder = function () {
     }
     this.band = function (artist) {
         var URL = `https://rest.bandsintown.com/artists/${artist}/events?app_id=codingbootcamp`
-        axios.get(URL).then(function (response) {
+        axios.get(URL).then(function (response, err) {
+            if (err) {
+                console.log(err);
+            }
             const venue = response.data[0].venue.name
             const location = response.data[0].venue.city
             const date = response.data[0].datetime
